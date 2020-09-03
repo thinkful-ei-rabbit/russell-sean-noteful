@@ -14,6 +14,7 @@ library.add(faPlus, faChevronLeft, faTrashAlt, faCheckDouble)
 ReactDOM.render(
   <BrowserRouter>
     <App />
+    <App />
   </BrowserRouter>,
   document.getElementById('root')
 )
