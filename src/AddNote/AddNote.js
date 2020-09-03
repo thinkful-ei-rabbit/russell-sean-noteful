@@ -8,7 +8,7 @@ export default class AddNote extends React.Component {
   }
 
   render() {
-    const  {folder = []}  = this.context;
+    const { folder = [] } = this.context;
     return (
       <section className="addNote">
         <h2>
@@ -22,13 +22,13 @@ export default class AddNote extends React.Component {
             <select id='note-select'>
               <option value={null}>...</option>
               {folder.map(folder =>
-              <option key={folder.id} value={folder.id}>{folder.name}
-              </option>
+                <option key={folder.id} value={folder.id}>{folder.name}
+                </option>
               )}
             </select>
             <input id='note-select' type='text'></input>
             <label htmlFor='note-content-input'>
-              content 
+              content
             </label>
             <textarea id="content" type='text'></textarea>
           </div>
