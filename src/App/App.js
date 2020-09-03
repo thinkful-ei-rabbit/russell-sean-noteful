@@ -42,6 +42,19 @@ class App extends Component {
         });
     };
 
+    // new code test
+    handleAddNote = noteId => {
+        this.setState({
+            notes: this.state.notes.filter(note => note.id !== noteId)
+        });
+    };
+
+    handleAddFolder = noteId => {
+        this.setState({
+            notes: this.state.notes.filter(note => note.id !== noteId)
+        });
+    };
+
     renderNavRoutes() {
         return (
             <>
@@ -80,7 +93,9 @@ class App extends Component {
         const value = {
             notes: this.state.notes,
             folders: this.state.folders,
-            deleteNote: this.handleDeleteNote
+            deleteNote: this.handleDeleteNote,
+            addNote: this.handleAddNote, // added
+            addFolder: this.handleAddFolder // added
         };
         return (
             <ApiContext.Provider value={value}>
