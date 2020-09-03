@@ -10,16 +10,16 @@ export default class AddFolder extends React.Component {
         }
 
     }
-
+    
     static contextType = ApiContext;
 
     handleSubmit = event => {
         event.preventDefault()
-        const folder = {name: event.target['folder-name'].value}
+        const folder = {name: event.target.folderName.value}
 
         fetch(`${config.API_ENDPOINT}/folders`, {
             method: 'POST',
-            header: {
+            headers: {
                 'content-type': 'application/json'
             },
             body: JSON.stringify(folder),
@@ -31,7 +31,7 @@ export default class AddFolder extends React.Component {
         })
         .then(folder => {
             this.context.addFolder(folder)
-            this.props.history.push(`/folder/${folder.id}`)
+            this.props.history.push('/')
         })
         .catch(error => {
             console.error({error})
@@ -45,7 +45,7 @@ export default class AddFolder extends React.Component {
                 <NotefulForm onSubmit={this.handleSubmit}>
                     <div className="form-field">
                         <label htmlFor="folder-name-input">Name</label>
-                        <input type="text" id="folder-name-input" name='folder-name' />
+                        <input type="text" id="folder-name-input" name='folderName' />
                     </div>
                     <button type="submit">Add Folder</button>
                 </NotefulForm>
@@ -54,3 +54,4 @@ export default class AddFolder extends React.Component {
     }
 
 }
+

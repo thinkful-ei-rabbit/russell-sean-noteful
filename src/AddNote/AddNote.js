@@ -1,14 +1,13 @@
 import React from 'react'
 import NotefulForm from '../NotefulForm/NotefulForm'
-// import ApiContext from '../ApiContext'
+import ApiContext from '../ApiContext'
 
 export default class AddNote extends React.Component {
-  static defaultProps = {
-    folders: [],
-  }
+  
+  static contextType = ApiContext
 
   render() {
-    const { folder = [] } = this.context;
+    const { folders = [] } = this.context;
     return (
       <section className="addNote">
         <h2>
@@ -20,17 +19,20 @@ export default class AddNote extends React.Component {
               note
             </label>
             <select id='note-select'>
-              <option value={null}>...</option>
-              {folder.map(folder =>
+              <option value={null}>Folders</option>
+              {folders.map(folder =>
                 <option key={folder.id} value={folder.id}>{folder.name}
                 </option>
               )}
             </select>
-            <input id='note-select' type='text'></input>
+            <label htmlFor='note-name'>
+              name
+            <input id='note-name' type='text' name="noteName" />
+            </label>
             <label htmlFor='note-content-input'>
               content
+              <textarea id="content" type='text' name="noteContent"></textarea>
             </label>
-            <textarea id="content" type='text'></textarea>
           </div>
           <button type='submit'>add note</button>
         </NotefulForm>

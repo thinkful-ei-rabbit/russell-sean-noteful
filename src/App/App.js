@@ -57,8 +57,8 @@ class App extends Component {
 
     handleAddFolder = folder => {
         this.setState({
-            notes: [
-                ...this.state.folder,
+            folders: [
+                ...this.state.folders,
                 folder
             ]
         });
