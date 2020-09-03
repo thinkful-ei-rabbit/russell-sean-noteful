@@ -9,6 +9,7 @@ import ApiContext from '../ApiContext';
 import config from '../config';
 import './App.css';
 
+
 class App extends Component {
     state = {
         notes: [],
@@ -43,15 +44,21 @@ class App extends Component {
     };
 
     // new code test
-    handleAddNote = noteId => {
+    handleAddNote = note => {
         this.setState({
-            notes: this.state.notes.filter(note => note.id !== noteId)
+            notes: [
+                ...this.state.notes,
+                note
+            ]
         });
     };
 
-    handleAddFolder = noteId => {
+    handleAddFolder = folder => {
         this.setState({
-            notes: this.state.notes.filter(note => note.id !== noteId)
+            notes: [
+                ...this.state.folder,
+                folder
+            ]
         });
     };
 
