@@ -5,12 +5,12 @@ import NoteListNav from '../NoteListNav/NoteListNav';
 import NotePageNav from '../NotePageNav/NotePageNav';
 import NoteListMain from '../NoteListMain/NoteListMain';
 import NotePageMain from '../NotePageMain/NotePageMain';
-import AddNote from '../AddNote/AddNote';
 import AddFolder from '../AddFolder/AddFolder';
+import AddNote from '../AddNote/AddNote';
+import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 import ApiContext from '../ApiContext';
 import config from '../config';
 import './App.css';
-
 
 class App extends Component {
     state = {
@@ -45,24 +45,18 @@ class App extends Component {
         });
     };
 
-    // new code test
-    handleAddNote = note => {
-        this.setState({
-            notes: [
-                ...this.state.notes,
-                note
-            ]
-        });
-    };
-
+    // pass along and check syntax
     handleAddFolder = folder => {
         this.setState({
-            folders: [
-                ...this.state.folders,
-                folder
-            ]
-        });
-    };
+            folders: [...this.state.folders, folder]
+        }) 
+    }
+
+    handleAddNote = note => {
+        this.setState({
+            notes: [...this.state.notes, note]
+        })
+    }
 
     renderNavRoutes() {
         return (
@@ -94,8 +88,8 @@ class App extends Component {
                     />
                 ))}
                 <Route path="/note/:noteId" component={NotePageMain} />
-                <Route path='/add-folder' component={AddFolder} />
-                <Route path='/add-note' component={AddNote} />
+                <Route path="/add-folder" component={AddFolder} />
+                <Route path="/add-note" component={AddNote} /> 
             </>
         );
     }
@@ -105,21 +99,24 @@ class App extends Component {
             notes: this.state.notes,
             folders: this.state.folders,
             deleteNote: this.handleDeleteNote,
-            addNote: this.handleAddNote, // added
-            addFolder: this.handleAddFolder // added
+            addFolder: this.handleAddFolder,
+            addNote: this.handleAddNote
         };
         return (
             <ApiContext.Provider value={value}>
-                <div className="App">
-                    <nav className="App__nav">{this.renderNavRoutes()}</nav>
-                    <header className="App__header">
-                        <h1>
-                            <Link to="/">Noteful</Link>{' '}
-                            <FontAwesomeIcon icon="check-double" />
-                        </h1>
-                    </header>
-                    <main className="App__main">{this.renderMainRoutes()}</main>
-                </div>
+                <ErrorBoundary>
+                    <div className="App">
+                        <nav className="App__nav">{this.renderNavRoutes()}</nav>
+                        <header className="App__header">
+                            <h1>
+                                <Link to="/">Noteful</Link>{' '}
+                                <FontAwesomeIcon icon="check-double" />
+ 
+                            </h1>
+                        </header>
+                        <main className="App__main">{this.renderMainRoutes()}</main>
+                    </div>
+                </ErrorBoundary>
             </ApiContext.Provider>
         );
     }

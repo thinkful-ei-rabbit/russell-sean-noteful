@@ -1,0 +1,47 @@
+h2 {
+    color: lightgray;
+    
+ }
+ 
+ .add-note-form {
+     width: 30%;
+     margin-left: 2vw;
+ }
+ label {
+     color: lightgray;
+     margin-bottom: 1vw;
+     font-size: 1.1rem;
+ }
+ input {
+     color: black;
+     margin-bottom: 2vw;
+     padding: 1.5vh;
+ }
+ textarea{
+     margin-bottom:2vw;
+     height: 15vh;
+ }
+ .note-form {
+     display: flex;
+     flex-direction: column;
+     background-color: #1E3556;
+     padding: 2vw;
+ }
+
+select {
+    padding: 1.5vh;
+    margin-bottom: 2vw;
+}
+  
+button {
+    padding: 1.5vh;
+    border-radius: 10px;
+    background-color: black;
+    color: lightgray;
+    font-size: 1.3rem
+}
+
+.error {
+    color: red;
+    margin-bottom: 2vw;
+}
